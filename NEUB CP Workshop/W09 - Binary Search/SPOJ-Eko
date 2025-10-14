@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace std;
+using namespace __gnu_pbds;
+template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+//order_of_key (k) : Number of items strictly smaller than k .
+//find_by_order(k) : K-th element in a set (counting from 0)..
+template <typename T> using ordered_multiset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
+#define fastio() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define endl '\n'
+#define ll long long
+#define vi vector <int>
+#define vll vector <long long>
+#define mll map <ll, ll>
+#define pii pair<int, int>
+#define print_yes cout << "YES" << '\n'
+#define print_no cout << "NO" << '\n'
+#define ln cout << endl
+#define srt(v) sort(v.begin(), v.end())
+#define rsrt(v) sort(v.rbegin(), v.rend())
+#define mem(a, b) memset(a, b, sizeof(a));
+#define rep(i, n) for(int i = 0; i < n; i++)
+#define rep1(i, n) for(int i = 1; i <= n; i++)
+#define F first
+#define S second
+
+const int MOD1 = 1e9 + 7;
+const int MOD2 = 998244353;
+const ll INF = 3e18;
+
+struct custom_hash {
+  static uint64_t splitmix64(uint64_t x) {
+      x += 0x9e3779b97f4a7c15;
+      x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
+      x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
+      return x ^ (x >> 31);
+  }
+  size_t operator()(uint64_t x) const {
+      static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
+      return splitmix64(x + FIXED_RANDOM);
+  }
+};
+
+bool isOK(vll &v, int mid, int m) {
+    int n = v.size();
+    ll sum = 0;
+    rep(i, n) {
+        if (v[i] > mid) sum += v[i] - mid;
+    }
+    return sum >= m;
+}
+
+int main(){
+    fastio();
+
+    int n; ll m; cin >> n >> m;
+    vll v(n);
+    rep(i, n) cin >> v[i];
+    rsrt(v);
+
+    int l = 0, r = 1e6, ans = -1;
+
+    while (l <= r) {
+        int mid = l + (r - l) / 2;
+
+        if (isOK(v, mid, m)) {
+            ans = mid;
+            l = mid + 1;
+        }
+        else r = mid - 1;
+    }
+    cout << ans << endl;
+} // *_*
