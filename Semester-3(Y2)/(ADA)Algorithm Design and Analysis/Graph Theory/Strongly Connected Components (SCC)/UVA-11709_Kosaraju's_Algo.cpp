@@ -1,5 +1,5 @@
 /**
- * Strongly Connected Components (SCC) - Kosraju's Algorithm
+ * Strongly Connected Components (SCC) - Kosaraju's Algorithm
  * Problem      : UVA - 11709
  * Author		: Das Akash
  * Date			: 25-10-2025
