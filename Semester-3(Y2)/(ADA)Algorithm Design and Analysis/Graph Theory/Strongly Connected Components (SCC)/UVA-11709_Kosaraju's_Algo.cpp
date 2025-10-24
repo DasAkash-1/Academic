@@ -18,13 +18,20 @@ using namespace std;
 const int N = 1005;
 bool vis[N];
 vi G[N], Gt[N], scc[N];
-int v, sccCt;
+int sccCt;
 stack <int> st;
 map <string, int> mp;
 
 void add_edge(int u, int v) {
     G[u].push_back(v);
     Gt[v].push_back(u);
+}
+
+void _clear() {
+    for(int i = 0; i < N; i++) {
+        G[i].clear();
+        Gt[i].clear();
+    }
 }
 
 void dfs_1(int u) {
@@ -47,11 +54,7 @@ int main(){
 
     int p, t;
     while (cin >> p >> t && p != 0) {
-        for(int i = 0; i < N; i++) {
-            G[i].clear();
-            Gt[i].clear();
-        }
-
+        _clear();
         cin.ignore();
 
         mem(vis, 0);
