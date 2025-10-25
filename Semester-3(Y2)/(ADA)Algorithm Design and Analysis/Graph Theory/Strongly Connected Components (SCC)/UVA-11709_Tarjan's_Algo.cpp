@@ -1,7 +1,7 @@
 /*
  * Strongly Connected Components (SCC) - Tarjan's Algorithm
- * Lab Assignment   : 7
- * Group No		    : C
+ * Problem      : UVA - 11709
+ * Author		: Das Akash
  * Submission Date	: 25-10-2025
  */
 
@@ -18,7 +18,7 @@ using namespace std;
 const int N = 1005;
 vi G[N], Gt[N], scc[N];
 int idx[N], low[N], sccCt, n, m, tempo;
-bool vis[N];
+bool vis[N], inStack[N];
 stack <int> st;
 map <string, int> mp;
 
@@ -34,14 +34,14 @@ void _clear() {
 void strong_connect(int u) {
     idx[u] = low[u] = tempo++;
     st.push(u);
-    vis[u] = 1;
+    inStack[u] = 1;
 
     for (auto v: G[u]) {
         if (idx[v] == -1) {
             strong_connect(v);
             low[u] = min(low[u], low[v]);
         }
-        else if (vis[v]) 
+        else if (inStack[v]) 
             low[u] = min(low[u], idx[v]);
     }
 
@@ -50,7 +50,7 @@ void strong_connect(int u) {
         int v = -1;
         while (v != u) {
             v = st.top(); st.pop();
-            vis[v] = 0;
+            inStack[v] = 0;
         }
     }
 }
