@@ -1,0 +1,67 @@
+import java.io.*;
+import java.util.*;
+
+public class Dict
+{
+    public static void main(String[] args)
+    {
+        File read = new File ("input.txt");
+        HashMap <String, String> mp = new HashMap<>();
+        Scanner in = new Scanner(System.in);
+        
+        try (Scanner readr = new Scanner(read))
+        {
+            while (readr.hasNextLine())
+            {
+                String s = readr.nextLine();
+                String [] a = s.split(" = ");
+                // System.out.print(a[0] + " ");
+                // System.out.println(a[1]);
+                mp.put(a[0], a[1]);
+            }
+        }
+        catch (FileNotFoundException x)
+        {
+            System.out.println("No file :(");
+        }
+
+        // for (var w: mp.entrySet())
+        // {
+        //     var k = w.getKey();
+        //     var v = w.getValue();
+
+        //     System.out.println(k + " " + v);
+        // }
+
+        int q = in.nextInt();
+        in.nextLine();
+
+        ArrayList <String> arr = new ArrayList<>();
+
+        // while (q-- > 0)
+        // {
+        //     String w = in.nextLine();
+
+        //     if (mp.containsKey(w))
+        //         System.out.println("Synonym" + " = " + mp.get(w));
+        //     else 
+        //         System.out.println("No such word :(");
+        // }
+
+        while (q-- > 0)
+        {
+            String w = in.nextLine();
+            arr.add(w);
+        }
+
+        for (int i = 0, j = 1; i < arr.size(); i++, j++)
+        {
+            String w = arr.get(i);
+            String s = mp.containsKey(w) ? mp.get(w) : "No such Word :(";
+            System.out.println(j + ".");
+            System.out.println("Word        Synonym");
+            System.out.println("---------   --------");
+            System.out.println(w + "         " + s);
+        }
+    }
+}
