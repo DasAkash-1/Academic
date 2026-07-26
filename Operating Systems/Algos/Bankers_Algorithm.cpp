@@ -31,7 +31,7 @@ void solve()
 
     for (int i = 0; i < r; i++) cin >> avail[i];
 
-    vector<vi> need(n, vi(r));
+    vvi need(n, vi(r));
 
     for (int i = 0; i < n; i++) 
         for (int j = 0; j < r; j++)
@@ -85,7 +85,7 @@ int32_t main()
 {
     fastio();
 
-    int t = 1; 
+    int t = 1, tc; 
     //cin >> t;
     while (t--) solve();
 }
