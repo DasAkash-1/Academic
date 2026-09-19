@@ -1,5 +1,5 @@
 /*
- * Stream Cipher
+ * One Time Pad
  * Problem      : 
  * Author		: Das Akash
  * Date	: 25-08-2025
